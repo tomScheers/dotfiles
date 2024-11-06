@@ -1,0 +1,6 @@
+require("snippets.lua_snips")
+require("snippets.html_snips")
+require("snippets.c_snips")
+require("snippets.js_snips")
+require("snippets.py_snips")
+require("snippets.css_snips")
