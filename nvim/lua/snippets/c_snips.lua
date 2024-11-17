@@ -13,10 +13,18 @@ ls.add_snippets("c", {
 		rep(1),
 		text("[0]);"),
 	}),
-	snippet(",", {
+	snippet(".", {
 		text({"#include <stdio.h>", "", ""});
 		text({"int main() {", ""});
 		text({"\treturn 0;", ""});
 		text("}");
-	})
+	}),
+	snippet("ptrCheck", {
+		text("if (");
+		insert(1, "ptr");
+		text({" == NULL) {", ""});
+		text({"\tfprintf(stderr, \"Failed to allocate memory\");", ""});
+		text({"\texit(EXIT_FAILURE);"});
+		text("}");
+	}),
 })
