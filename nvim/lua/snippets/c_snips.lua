@@ -13,7 +13,7 @@ ls.add_snippets("c", {
 		rep(1),
 		text("[0]);"),
 	}),
-	snippet(".", {
+	snippet("boilerPlate", {
 		text({"#include <stdio.h>", "", ""});
 		text({"int main() {", ""});
 		text({"\treturn 0;", ""});
