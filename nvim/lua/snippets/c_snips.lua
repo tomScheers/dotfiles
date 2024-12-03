@@ -13,13 +13,13 @@ ls.add_snippets("c", {
 		rep(1),
 		text("[0]);"),
 	}),
-	snippet("boilerPlate", {
+	snippet("boiler", {
 		text({"#include <stdio.h>", "", ""});
 		text({"int main() {", ""});
 		text({"\treturn 0;", ""});
 		text("}");
 	}),
-	snippet("ptrCheck", {
+	snippet("nullcheck", {
 		text("if (");
 		insert(1, "ptr");
 		text({" == NULL) {", ""});

@@ -1,6 +1,6 @@
 [shell]
 program = "/bin/bash"
-args = ["-c", "cd /home/tom/Programming && tmux new-session -A -s default 'neofetch; bash' || exec bash"]
+args = ["-c", "cd /home/tom/Programming && tmux attach -t default || tmux new -s default"]
 
 [env]
 TERM = "xterm-256color"
