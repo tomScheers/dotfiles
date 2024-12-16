@@ -104,3 +104,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		vim.api.nvim_echo(message, false, {})
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "bash_aliases",
+	callback = function()
+		vim.bo.filetype = "sh"
+	end
+})

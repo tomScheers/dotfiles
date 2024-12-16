@@ -4,24 +4,21 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias c="clear"
-alias bashrc="nvim ~/dotfiles/bash/.bashrc && source ~/.bashrc"
+alias bashrc="nvim ~/dotfiles/bash/bashrc && sourcerc"
+alias sourcerc="source ~/dotfiles/bash/bashrc"
 alias s="sudo !!" # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
+    alias grep='grep --color=auto' 
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-# some more ls aliases
+# some more ls aliases alias ll='ls -alF' alias la='ls -A'
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
-
-
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -35,6 +32,7 @@ cd_to() {
     cd "$2"
   fi
 }
+
 cdp() {
   cd_to "/home/tom/Programming" "$1"
 }
@@ -47,7 +45,56 @@ cda() {
   cd_to "/home/tom/dotfiles/alacritty" "$1"
 }
 
+cdd() {
+  cd_to "/home/tom/dotfiles/" "$1"
+}
+
+cdb() {
+  cd_to "/home/tom/dotfiles/bash" "$1"
+}
+
 weather() {
   local city="${1:-Doesburg}" # Default to 'Doesburg' if no argument is provided
   curl -s "wttr.in/$city?format=3"
 }
+
+makemake() {
+  touch Makefile
+  echo "CC = gcc" >> Makefile
+  echo "CFLAGS = -Wall -Wextra -std=c11 -g" >> Makefile
+  echo "" >> Makefile
+  echo "SRC_DIR = src" >> Makefile
+  echo "OBJ_DIR = obj" >> Makefile
+  echo "BIN_DIR = bin" >> Makefile
+  echo "" >> Makefile
+  echo "TARGET = \$(BIN_DIR)/main" >> Makefile
+  echo "SRC = \$(wildcard \$(SRC_DIR)/*.c)" >> Makefile
+  echo "OBJ = \$(patsubst \$(SRC_DIR)/%.c,\$(OBJ_DIR)/%.o,\$(SRC))" >> Makefile
+  echo "" >> Makefile
+  echo "all: \$(TARGET)" >> Makefile
+  echo "" >> Makefile
+  echo "\$(TARGET): \$(OBJ)" >> Makefile
+  echo -e "\t@mkdir -p \$(BIN_DIR)" >> Makefile
+  echo -e "\t\$(CC) \$(CFLAGS) $^ -o \$@" >> Makefile
+  echo "" >> Makefile
+  echo "\$(OBJ_DIR)/%.o: \$(SRC_DIR)/%.c" >> Makefile
+  echo -e "\t@mkdir -p \$(OBJ_DIR)" >> Makefile
+  echo -e "\t\$(CC) \$(CFLAGS) -c $< -o \$@" >> Makefile
+  echo "" >> Makefile
+  echo "clean:" >> Makefile
+  echo -e "\trm -rf \$(OBJ_DIR) \$(BIN_DIR)" >> Makefile
+  echo "" >> Makefile
+  echo ".PHONY: all clean Makefile " >> Makefile
+}
+
+ccreate() {
+  mkdir src
+  makemake
+  touch src/main.c
+  echo "#include <stdio.h>" >> src/main.c
+  echo "" >> src/main.c
+  echo "int main() {" >> src/main.c
+  echo -e "\treturn 0;" >> src/main.c
+  echo "}" >> src/main.c
+}
+
