@@ -1,5 +1,5 @@
 # Adds aliases
-alias update='sudo apt update && echo Update Complete && sudo apt dist-upgrade -y && sudo apt full-upgrade -y && echo Upgrade Complete && sudo apt autoremove -y && sudo apt clean -y && echo Cleanup Complete'
+alias update='sudo apt update && echo Update Complete && sudo apt full-upgrade -y && echo Upgrade Complete && sudo apt autoremove -y && sudo apt clean -y && echo Cleanup Complete'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

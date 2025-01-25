@@ -1,0 +1,7 @@
+[
+    {
+        "directory": "/",
+        "command": "gcc -Wall -Wextra -Wpedantic -std=c17 -Wshadow -Wconversion -Werror dummy.c",
+        "file": "dummy.c"
+    }
+]
