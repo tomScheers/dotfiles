@@ -26,6 +26,14 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 
 # Adds alias functions
+
+yt() {
+  local DIR="$(pwd)"
+  cd ~/Programming/Python/Youtube_Fetcher || return
+  python3 main.py
+  cd "$DIR" || return
+}
+
 cd_to() {
   cd "$1"
   if [ -n "$2" ]; then
@@ -58,38 +66,18 @@ weather() {
   curl -s "wttr.in/$city?format=3"
 }
 
-makemake() {
-  touch Makefile
-  echo "CC = gcc" >> Makefile
-  echo "CFLAGS = -Wall -Wextra -std=c11 -g" >> Makefile
-  echo "" >> Makefile
-  echo "SRC_DIR = src" >> Makefile
-  echo "OBJ_DIR = obj" >> Makefile
-  echo "BIN_DIR = bin" >> Makefile
-  echo "" >> Makefile
-  echo "TARGET = \$(BIN_DIR)/main" >> Makefile
-  echo "SRC = \$(wildcard \$(SRC_DIR)/*.c)" >> Makefile
-  echo "OBJ = \$(patsubst \$(SRC_DIR)/%.c,\$(OBJ_DIR)/%.o,\$(SRC))" >> Makefile
-  echo "" >> Makefile
-  echo "all: \$(TARGET)" >> Makefile
-  echo "" >> Makefile
-  echo "\$(TARGET): \$(OBJ)" >> Makefile
-  echo -e "\t@mkdir -p \$(BIN_DIR)" >> Makefile
-  echo -e "\t\$(CC) \$(CFLAGS) $^ -o \$@" >> Makefile
-  echo "" >> Makefile
-  echo "\$(OBJ_DIR)/%.o: \$(SRC_DIR)/%.c" >> Makefile
-  echo -e "\t@mkdir -p \$(OBJ_DIR)" >> Makefile
-  echo -e "\t\$(CC) \$(CFLAGS) -c $< -o \$@" >> Makefile
-  echo "" >> Makefile
-  echo "clean:" >> Makefile
-  echo -e "\trm -rf \$(OBJ_DIR) \$(BIN_DIR)" >> Makefile
-  echo "" >> Makefile
-  echo ".PHONY: all clean Makefile " >> Makefile
+tmux-session() {
+  tmux new-session -d -s ses
+  tmux rename-window -t ses:0 editor
+  tmux new-window -t ses -n ollama
+  tmux send-keys -t ses:ollama 'ollama run deepseek-r1' C-m
+  tmux new-window -t ses -n dev
+  tmux attach-session -t ses
 }
 
 ccreate() {
   mkdir src
-  makemake
+  cp ~/Programming/C/utils/makefile .
   touch src/main.c
   echo "#include <stdio.h>" >> src/main.c
   echo "" >> src/main.c

@@ -91,3 +91,9 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+
+export PYTHONPATH="$PYTHONPATH:~/Programming/Python/Youtube_Fetcher/yt-dlp/"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/tom/.lmstudio/bin"

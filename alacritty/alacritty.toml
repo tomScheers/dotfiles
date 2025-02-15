@@ -1,6 +1,6 @@
 [shell]
 program = "/bin/bash"
-args = ["-c", "cd /home/tom/Programming && tmux attach -t default || tmux new -s default"]
+args = ["-c", "~/dotfiles/alacritty/tmux-session.sh"]
 
 [env]
 TERM = "xterm-256color"
